@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+    ">
+    <bean id="s1" class="com.study.springcore.case01.Student">
+        <property name="id" value="10010"/>
+        <property name="name" value="lisa"/>
+        <property name="age" value="23"/>
+        <property name="sex" value="女"/>
+    </bean>
+    <bean id="s2" class="com.study.springcore.case01.Student">
+        <constructor-arg  value="10086"></constructor-arg>
+        <constructor-arg  value="tom"></constructor-arg>
+        <constructor-arg  value="25" index="2" type="java.lang.Integer"></constructor-arg>
+        <constructor-arg  value="男"></constructor-arg>
+    </bean>
+    <bean id="s3" class="com.study.springcore.case01.Student">
+        <constructor-arg  value="10022"></constructor-arg>
+        <constructor-arg  value="lili"></constructor-arg>
+        <constructor-arg  value="90" index="2" type="java.lang.Double"></constructor-arg>
+        <constructor-arg  value="男"></constructor-arg>
+    </bean>
+    <bean id="s4" class="com.study.springcore.case01.Student" p:id="10033" p:name="ken" p:age="30" p:sex="男" p:teacher-ref="teacher">
+      
+    </bean>
+    <bean id="s5" class="com.study.springcore.case01.Student" >
+        <property name="id" value="10055"/>
+        <property name="name" value="turisa"/>
+        <property name="age" value="14"/>
+        <property name="sex" value="女"/>
+        <property name="score" value="80"/>
+        <property name="teacher" ref="teacher"/>
+        <property name="teacher.tid" value="2"/>
+        <property name="teacher.tname" value="x"/>
+    </bean>
+    <bean id="s6" class="com.study.springcore.case01.Student" >
+        <property name="id" value="10066"/>
+        <property name="name" value="dav"/>
+        <property name="age" value="15"/>
+        <property name="sex" value="女"/>
+        <property name="score" value="80"/>
+        <property name="teacher">
+            <bean id="tt" class="com.study.springcore.case01.Teacher">
+                <property name="tid" value="2222"/>
+                <property name="tname" value="admin"/>
+            </bean>
+        </property>
+      
+    </bean>
+    <!--    <bean id="s7" class="com.study.springcore.case01.Student" >
+      <property name="id" value="10066"/>
+      <property name="name" value="dav"/>
+      <property name="age" value="15"/>
+      <property name="sex" value="女"/>
+      <property name="score" value="80"/>
+      <property name="teacher" ref="tt">
+          
+      </property>
+      
+    </bean>-->
+    <bean id="teacher" class="com.study.springcore.case01.Teacher">
+        <property name="tid" value="1"/>
+        <property name="tname" value="ellf"/>
+    </bean>
+    <bean id="t1" class="com.study.springcore.case01.Teacher">
+        <property name="tid" value="100001"/>
+        <property name="tname" value="ww"/>
+        <property name="cls">
+            <util:list>
+                <value>A</value>
+                <value>B</value>
+                <value>C</value>
+            </util:list>
+        </property>
+    </bean>
+    <bean id="t2" class="com.study.springcore.case01.Teacher">
+        <property name="tid" value="100002"/>
+        <property name="tname" value="mm"/>
+        <property name="students" >
+            <list>
+                <ref bean="s1"/>
+                <ref bean="s2"/>
+                <ref bean="s3"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="t3" class="com.study.springcore.case01.Teacher">
+        <property name="tid" value="100003"/>
+        <property name="tname" value="zero"/>
+        <property name="bossMap" >
+            <map>
+                <entry key="1001">
+                    <value>tiger</value>
+                </entry>
+                <entry key="1002">
+                    <value>asaka</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="t4" class="com.study.springcore.case01.Teacher">
+        <property name="tid" value="100004"/>
+        <property name="tname" value="rr"/>
+        <property name="students" >
+            <util:list>
+                <ref bean="s4"/>
+                <ref bean="s5"/>
+                <ref bean="s6"/>
+            </util:list>
+        </property>
+        <property name="bossMap" ref="b"/>
+    </bean>
+    <util:map id="b">
+        <entry key="1000">
+            <value>tina</value>
+        </entry>
+        <entry key="2000">
+            <value>mavis</value>
+        </entry>
+        <entry key="3000">
+            <value>lyra</value>
+        </entry>
+    </util:map>
+</beans>

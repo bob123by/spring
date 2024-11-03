@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+">
+    <bean class="com.study.springcore.case01.Person" id="personOne" >
+        <property name="id" >
+            <value>1001</value>
+        </property>
+        <property name="name" value="小名"></property>
+       
+    </bean>
+    <bean class="com.study.springcore.case01.Person" id="personTwo" p:man-ref="man" >
+        <property name="id" value="1002"></property>
+        <property name="name" value="小王"></property>
+       
+         
+    </bean>
+    <bean class="com.study.springcore.case01.Person" id="personThree" >
+        <property name="man" ref="man">
+           
+        </property>       
+        <property name="man.name" value="小紅"></property>
+        <property name="man.age" value="12"></property>
+    </bean>
+    <bean class="com.study.springcore.case01.Person" id="personFour" >
+        <property name="id" value="1002"></property>
+        <property name="name" value="小王"></property>
+        <property name="man">
+            <bean id="mm" class="com.study.springcore.case01.Man">
+                <property name="name" value="lisa"/>
+                <property name="age" value="18"/>
+            </bean>
+        </property>
+    </bean>
+    <bean id="man" class="com.study.springcore.case01.Man">
+        <property name="name" value="lili"></property>
+        <property name="age" value="35"></property>
+        
+    </bean>
+</beans>
